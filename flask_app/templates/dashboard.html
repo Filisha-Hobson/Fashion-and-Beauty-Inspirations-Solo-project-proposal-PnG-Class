@@ -1,0 +1,109 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+<style>
+    .custom-container {
+        padding: 20px;
+        background-color: #FAB3A9;
+    }
+
+    .custom-text {
+        margin-left: 20px;
+        color: #523e45;
+    }
+
+    .custom-button {
+        background-color: #ed6b86;
+        color: white;
+    }
+
+    .custom-likes-button {
+        background-color: #7fb285;
+        color: white;
+    }
+
+    .custom-link {
+        color: #7fb285;
+    }
+
+    .custom-background {
+        background-color: rgba(255, 255, 255, 0.5);
+        border-radius: 20px;
+    }
+</style>
+<title>Dashboard</title>
+</head>
+
+<body class="custom-container">
+    <div class="d-flex flex-row justify-content-between p-2">
+        <h1 class="custom-text">FandBInspirations</h1>
+        <a class="btn custom-button m-3" href="/logout">Log Out</a>
+    </div>
+
+    <h3 class="custom-text">Hello, {{user.first_name}} {{user.last_name}}</h3>
+    <div class="container custom-container">
+        <div class="row justify-content-center">
+            <div class="text-center">
+                <h2 class="custom-text">Post an Inspo</h2>
+                <form action="/inspiration/add" method="post" class="text-light">
+                    {% with messages = get_flashed_messages(category_filter=['inspo'])
+                    %} {% if messages %}
+                    <div class="alert alert-danger" role="alert">
+                        {% for message in messages %}
+                        <p>{{message}}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %} {% endwith %}
+                    <div class="form-group flex row justify-content-center">
+                        <input type="text" name="description" class="form-control" style="width: 70%;">
+                        <input type="submit" value="Inspo" class="btn custom-button"
+                            style="width: 10%; margin: 10px;" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% for inspo in inspiration %}
+    <div class="container custom-container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <p class="text-muted">{{inspo.inspire.first_name}} says</p>
+                <div class="card my-2 custom-background">
+                    <div class="card-body">
+                        <div class="d-flex flex-row align-items-center justify-content-between">
+                            <p class="mb-0">{{inspo.description}}</p>
+                            <div>
+                                {% if inspo.id not in user_likes %}
+                                <a class="btn btn-outline-success mx-2" href="/like/{{inspo.id}}">Like</a>
+                                {% endif %}
+                                {% if inspo.id in user_likes %}
+                                <a class="btn custom-likes-button mx-2" href="/unlike/{{inspo.id}}">Unlike</a>
+                                {% endif %}
+                                <p class="mb-0"><a class="custom-link"
+                                        href="inspiration/display/{{ inspo.id}}">{{inspo.likes|length}}</a> people liked
+                                    this.</p>
+                            </div>
+                        </div>
+                        {% if inspo.user_id == session.user_id %}
+                        <div class="text-right mt-2">
+                            <a href="inspiration/update/{{inspo.id}}" class="custom-link">Edit</a>
+                            <a href="inspiration/devour/{{inspo.id}}" class="custom-link">Delete</a>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</body>
+
+</html>

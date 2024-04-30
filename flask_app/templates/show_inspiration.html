@@ -1,0 +1,176 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        .custom-text {
+            color: #523e45;
+        }
+        .custom-container {
+        padding: 20px;
+        background-color: #FAB3A9;
+    }
+
+        .custom-button {
+            background-color: #ed6b86;
+            color: white;
+        }
+
+        .custom-background {
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 20px;
+            padding: 20px;
+        }
+
+        .custom-table th,
+        .custom-table td {
+            border: 1px solid #523e45;
+        }
+    </style>
+    <title>Show</title>
+</head>
+<body class="custom-container">
+    <div class="d-flex flex-row justify-content-between p-2">
+        <h3 class="custom-text">{{user.first_name}} {{user.last_name}}</h3>
+        <div class="d-flex">
+            <a class="btn custom-button m-3" href="/dashboard">Back to Dashboard</a>
+            <a class="btn custom-button m-3" href="/logout">Log Out</a>
+        </div>
+    </div>
+    <p class="custom-text">{{chooseinspiration.inspire.first_name}} says: {{chooseinspiration.description}}</p>
+    <div class="container">
+        <div>
+            <p class="custom-text">People who liked this:</p>
+            <table class="table custom-table">
+                <thead>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in listuserslikes.likes %}
+                    <tr>
+                        <td>{{user.first_name}}</td>
+                        <td>{{user.last_name}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        .custom-text {
+            color: #523e45;
+        }
+
+        .custom-text2 {
+            text-align: center;
+            margin-bottom: 20px;
+            margin-top: 100px;
+            justify-content: center;
+            font-weight: 800;
+        
+         
+        }
+
+        .custom-container {
+            padding: 20px;
+            background-color: #FAB3A9;
+        }
+
+        .custom-button {
+            background-color: #ed6b86;
+            color: white;
+        }
+
+        .custom-background {
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 20px;
+            padding: 20px;
+        }
+
+        .custom-table th,
+        .custom-table td {
+            border: 1px solid #523e45;
+        }
+
+        .custom-table tbody tr:nth-child(odd) {
+            background-color: #ed6b86;
+        }
+        .custom-table tbody tr:nth-child(even) {
+            background-color: #bb6575;
+        }
+
+        .custom-table {
+            width: 50%;
+            margin: auto;
+        }
+
+        .custom-inspiration {
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .custom-inspo {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.634);
+            border-radius: 20px;
+            padding: 10px;
+            font-size: 18px;
+            width: 50%;
+            margin: 0 auto;
+        }
+    </style>
+    <title>Show</title>
+</head>
+
+<body class="custom-container">
+    <div class="d-flex flex-row justify-content-between p-2">
+        <h3 class="custom-text">{{user.first_name}} {{user.last_name}}</h3>
+        <div class="d-flex">
+            <a class="btn custom-button m-3" href="/dashboard">Back to Dashboard</a>
+            <a class="btn custom-button m-3" href="/logout">Log Out</a>
+        </div>
+    </div>
+    <p class="custom-inspiration">{{chooseinspiration.inspire.first_name}} says: </p>
+    <div class = "custom-inspo">{{chooseinspiration.description}}</div>
+    <div class="container">
+        <div>
+            <p class="custom-text custom-text2">People who liked this:</p>
+            <table class="table custom-table">
+                <thead>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in listuserslikes.likes %}
+                    <tr>
+                        <td>{{user.first_name}}</td>
+                        <td>{{user.last_name}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>
